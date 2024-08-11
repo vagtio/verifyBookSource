@@ -1,9 +1,19 @@
 # VerifyBookSource
 
 阅读书源生成、校验工具v2.1
-已生成检验、过滤完成：https://gitdl.cn/https://raw.githubusercontent.com/vagtio/verifyBookSource/main/results/valid_books.json
+
+
+
+定时每天零点更新校验、过滤完成的书源：
+
+https://gitdl.cn/https://raw.githubusercontent.com/vagtio/verifyBookSource/main/results/valid_books.json
+
+声明源书源来自 https://github.com/shidahuilang/shuyuan 
+
+我只是做了整合二次检验、过滤
 
 ## 项目
+
 
 运行要求：
 
@@ -12,7 +22,7 @@ Python3.10以上
 
 原理：
 
-其实是检验书源的网址能不能打开，过虑关键字
+检验书源的网址能不能打开，过虑关键字
 
 ## 功能
 
@@ -70,7 +80,7 @@ Github：https://github.com/Qiantigers/verifyBookSource
 
 ## 致谢
 
-我们想要特别感谢以下仓库和它们的贡献者，他们的工作对我们的项目产生了重要影响：
+我们想要特别感谢以下仓库和它们的贡献者，他们的工作对我的项目产生了重要影响：
 
  :star: [shuyuan](https://github.com/shidahuilang/shuyuan)：香色闺阁+阅读3.0书源+源阅读+爱阅书香+千阅+花火阅读+读不舍手+IPTV源+IPA巨魔应用=自动更新
  
