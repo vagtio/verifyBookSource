@@ -1,12 +1,13 @@
 # VerifyBookSource
 
 阅读书源生成、校验工具v2.1
+已生成检验、过滤完成：https://gitdl.cn/https://raw.githubusercontent.com/vagtio/verifyBookSource/main/results/valid_books.json
 
 ## 项目
 
 运行要求：
 
-我用的是Python3.12
+Python3.10以上
 
 
 原理：
