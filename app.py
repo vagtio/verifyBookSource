@@ -18,16 +18,20 @@ def resource_path(relative_path):
 def load_or_create_config():
     """ 加载或创建配置文件 """
     config_path = resource_path('book/config.json')
-    if input('是否使用config.json文件？（不使用则通过命令行输入配置）（y/n）').lower() == 'n':
-        config = {
-            'path': input('本地文件路径/文件直链URL：'),
-            'outpath': input('书源输出路径（为空则为当前目录，目录最后带斜杠）：') or './',
-            'workers': int(input('请输入工作线程，填写数字（并不是越大越好）：')),
-            'dedup': input('是否去重？（y/n）'),
-            'filter': input('是否过滤特定关键词的书源？（y/n）'),
-            'keywords_to_filter': input('请输入要过滤的关键词，用逗号分隔：').split(',') if input(
-                '是否过滤特定关键词的书源？（y/n）').lower() == 'y' else []
-        }
+    if input('是否使用config.json文件？（y/n）').lower() == 'n':
+        config = {}
+        config['path'] = input('本地文件路径/文件直链URL：')
+        config['outpath'] = input('书源输出路径（为空则为当前目录，目录最后带斜杠）：') or './'
+        config['workers'] = int(input('请输入工作线程，填写数字（并不是越大越好）：'))
+        config['dedup'] = input('是否去重？（y/n）').lower() == 'y'
+
+        filter_option = input('是否过滤特定关键词的书源？（y/n）').lower()
+        config['filter'] = filter_option == 'y'
+        if config['filter']:
+            config['keywords_to_filter'] = input('请输入要过滤的关键词，用逗号分隔：').split(',')
+        else:
+            config['keywords_to_filter'] = []
+
         with open(config_path, 'w', encoding='utf-8') as f:
             json.dump(config, f, ensure_ascii=False, indent=4, sort_keys=False)
     else:
@@ -65,7 +69,7 @@ def main():
           f"有效书源数：{analysis['valid']}\n"
           f"无效书源数：{analysis['invalid']}\n"
           f"成功率：{analysis['success_rate']:.2f}%\n"
-          f"重复书源数：{(analysis['total'] - analysis['valid'] - analysis['invalid']) if config.get('dedup') == 'y' else '未选择去重'}\n"
+          f"重复书源数：{(analysis['total'] - analysis['valid'] - analysis['invalid']) if config['dedup'] else '未选择去重'}\n"
           f"耗时：{elapsed_time:.2f}秒\n")
 
     input('输入任意键退出……')
