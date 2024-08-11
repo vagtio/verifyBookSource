@@ -1,0 +1,23 @@
+{
+    "path": "http://mirror.ghproxy.com/https://raw.githubusercontent.com/shidahuilang/shuyuan/shuyuan/good.json",
+    "outpath": "./results/",
+    "workers": 64,
+    "dedup": "y",
+    "filter": "y",
+    "keywords_to_filter": [
+        "正版",
+        "付费",
+        "VIP",
+        "登录",
+        "注册",
+        "百度",
+        "失效",
+        "验证",
+        "码",
+        "漫",
+        "听",
+        "YiOVE"
+    ],
+    "timeout": 10,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+}
