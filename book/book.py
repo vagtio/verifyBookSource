@@ -164,11 +164,10 @@ class BookSourceManager:
         """
         self.logger.info("正在保存结果...")
         os.makedirs(outpath, exist_ok=True)
-        for file_name, data in [('good.json', results['good']), ('error.json', results['error'])]:
-            file_path = os.path.join(outpath, file_name)
-            with open(file_path, 'w', encoding='utf-8') as f:
-                json.dump(data, f, ensure_ascii=False, indent=4, sort_keys=False)
-        self.logger.info(f"结果已保存到 {outpath}")
+        file_path = os.path.join(outpath, 'valid_books.json')
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(results['good'], f, ensure_ascii=False, indent=4, sort_keys=False)
+        self.logger.info(f"有效书源已保存到 {file_path}")
 
     def analyze_results(self, results):
         """
