@@ -66,3 +66,13 @@ Github：https://github.com/Qiantigers/verifyBookSource
 输入任意键退出……
 
 ```
+
+## 致谢
+
+我们想要特别感谢以下仓库和它们的贡献者，他们的工作对我们的项目产生了重要影响：
+
+ :star: [shuyuan](https://github.com/shidahuilang/shuyuan)：香色闺阁+阅读3.0书源+源阅读+爱阅书香+千阅+花火阅读+读不舍手+IPTV源+IPA巨魔应用=自动更新
+ 
+ :star: [VerifyBookSource](https://github.com/WuSuoV/verifyBookSource)：校验阅读书源，生成有效书源和无效书源。支持书源去重、多线程
+
+我们非常感激开源社区的贡献和支持。
