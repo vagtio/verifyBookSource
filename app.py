@@ -1,67 +1,190 @@
 import json
-import os.path
-import time
+import os
+import logging
+from urllib3 import disable_warnings
+from requests import Session, RequestException
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from tqdm import tqdm
 
-from book.book import book
+# 禁用SSL警告，避免在进行HTTPS请求时出现不必要的警告
+disable_warnings()
 
-if __name__ == '__main__':
-    print("欢迎使用书源校验工具（VerifyBookSource v2.0）\n"
-          "作者：勿埋我心 - SkyQian\n"
-          "Github：https://github.com/Qiantigers/verifyBookSource\n"
-          "我的博客：https://www.skyqian.com\n"
-          f"{'-' * 16}")
+class BookSourceManager:
+    def __init__(self, file_path, config):
+        """
+        初始化BookSourceManager类
+        :param file_path: str, 书源文件的路径或URL
+        :param config: dict, 包含配置参数的字典
+        """
+        self.file_path = file_path
+        self.config = config
+        self.logger = self.setup_logger()
+        self.session = self.setup_session()
+        # 预处理过滤关键词，转换为小写并存储为集合，提高查找效率
+        self.keywords_set = set(keyword.lower() for keyword in self.config.get('keywords_to_filter', []))
 
-    mode = input('是否使用config.json文件？（不使用则通过命令行输入配置）（y/n）')
+    @staticmethod
+    def setup_logger():
+        """
+        设置日志记录器
+        :return: logging.Logger对象
+        """
+        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+        return logging.getLogger(__name__)
 
-    # 判断是否进入命令行输入配置
-    if mode.lower() == 'n':
-        path = input('本地文件路径/文件直链URL：')
-        outpath = input('书源输出路径（为空则为当前目录，目录最后带斜杠）：')
-        workers = input('请输入工作线程，填写数字（并不是越大越好）：')
-        dedup = input('是否去重？（y/n）')
-        with open('./config.json', mode='w', encoding='utf-8') as f:
-            tmp = {
-                'path': path,
-                'workers': workers,
-                'dedup': dedup,
-                'outpath': outpath
-            }
-            json.dump(obj=tmp, fp=f, ensure_ascii=False, indent=4, sort_keys=False)
+    def setup_session(self):
+        """
+        设置requests会话，用于复用连接，提高网络请求效率
+        :return: requests.Session对象
+        """
+        session = Session()
+        session.headers.update({'user-agent': self.config.get('user_agent', 'Mozilla/5.0')})
+        session.verify = False  # 禁用SSL验证，注意：这可能带来安全风险
+        return session
 
-    # 判断配置文件是否存在
-    if not os.path.exists('./config.json'):
-        print('config.json文件不存在，请检查一下。或者使用命令行输入配置。')
-    else:
-        with open('./config.json', mode='r', encoding='utf-8') as f:
-            config = json.load(f)
+    def load_books(self):
+        """
+        从文件或URL加载书源
+        :return: list, 包含书源数据的列表
+        """
+        self.logger.info("正在加载书源...")
+        try:
+            if self.file_path.startswith('http'):
+                response = self.session.get(self.file_path, timeout=self.config.get('timeout', 5))
+                response.raise_for_status()
+                return response.json()
+            else:
+                with open(self.file_path, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+        except (RequestException, json.JSONDecodeError, FileNotFoundError) as e:
+            self.logger.error(f"加载书源时出错: {str(e)}")
+            return []
 
-        books = book(config.get('path'))
+    def check_book_source(self, book):
+        """
+        检查单个书源的可用性
+        :param book: dict, 包含书源信息的字典
+        :return: dict, 包含书源和其状态的字典
+        """
+        try:
+            url = book['bookSourceUrl']
+            response = self.session.get(url, timeout=self.config.get('timeout', 5))
+            return {'book': book, 'status': response.status_code == 200}
+        except RequestException:
+            return {'book': book, 'status': False}
 
-        # 标记开始时间
-        start_time = time.time()
-        books_res = books.checkbooks(workers=int(config.get('workers')))
+    def checkbooks(self, workers):
+        """
+        并发检查所有书源的可用性
+        :param workers: int, 并发工作线程数
+        :return: dict, 包含有效和无效书源的字典
+        """
+        self.logger.info("开始检查书源...")
+        books = self.load_books()
+        good, error = [], []
 
-        good = books_res.get('good')
-        error = books_res.get('error')
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            futures = [executor.submit(self.check_book_source, book) for book in books]
+            for future in tqdm(as_completed(futures), total=len(books), desc="检查进度"):
+                result = future.result()
+                (good if result['status'] else error).append(result['book'])
 
-        if config.get('dedup') == 'y':
-            good = books.dedup(good)
+        return {'good': good, 'error': error}
 
-        with open(config.get('outpath') + 'good.json', 'w', encoding='utf-8') as f:
-            json.dump(good, f, ensure_ascii=False, indent=4, sort_keys=False)
+    @staticmethod
+    def dedup(books):
+        """
+        去除重复的书源
+        :param books: list, 书源列表
+        :return: list, 去重后的书源列表
+        """
+        seen_urls = set()
+        return [book for book in books if not (book['bookSourceUrl'] in seen_urls or seen_urls.add(book['bookSourceUrl']))]
 
-        with open(config.get('outpath') + 'error.json', 'w', encoding='utf-8') as f:
-            json.dump(error, f, ensure_ascii=False, indent=4, sort_keys=False)
+    def should_filter(self, book):
+        """
+        判断是否应该过滤掉该书源
+        :param book: dict, 书源信息
+        :return: bool, 是否应该过滤
+        """
+        if self.config.get('exact_keyword_match', False):
+            return book.get('bookSourceName', '').lower() in self.keywords_set
+        else:
+            return any(
+                keyword in book.get('bookSourceName', '').lower() or
+                keyword in book.get('bookSourceUrl', '').lower() or
+                keyword in book.get('bookSourceGroup', '').lower() or
+                keyword in book.get('bookSourceComment', '').lower()
+                for keyword in self.keywords_set
+            )
 
-            s = len(books.json_to_books())
-            g = len(good)
-            e = len(error)
-            print(f"\n{'-' * 16}\n"
-                  "成果报表\n"
-                  f"书源总数：{s}\n"
-                  f"有效书源数：{g}\n"
-                  f"无效书源数：{e}\n"
-                  f"重复书源数：{(s - g - e) if config.get('dedup') == 'y' else '未选择去重'}\n"
-                  f"耗时：{time.time() - start_time:.2f}秒\n")
+    def filter_sources(self, books):
+        """
+        根据关键词过滤书源
+        :param books: list, 待过滤的书源列表
+        :return: list, 过滤后的书源列表
+        """
+        filtered_books = []
+        filtered_out = 0
+        for book in books:
+            if self.should_filter(book):
+                filtered_out += 1
+                self.logger.debug(f"已过滤书源: {book.get('bookSourceName', 'Unknown')} 由于关键词匹配")
+            else:
+                filtered_books.append(book)
+        self.logger.info(f"共过滤掉 {filtered_out} 个书源")
+        return filtered_books
 
-    input('输入任意键退出……')
+    def process_books(self, workers):
+        """
+        处理所有书源：检查、去重、过滤
+        :param workers: int, 并发工作线程数
+        :return: dict, 处理后的结果
+        """
+        self.logger.info("开始处理书源...")
+        result = self.checkbooks(workers)
+
+        if self.config.get('dedup') == 'y':
+            self.logger.info("正在去除重复...")
+            result['good'] = self.dedup(result['good'])
+
+        if self.config.get('filter', 'n') == 'y':
+            self.logger.info("正在过滤书源...")
+            result['good'] = self.filter_sources(result['good'])
+            result['error'] = self.filter_sources(result['error'])
+
+        self.logger.info("处理完成！")
+        return result
+
+    def save_results(self, results, outpath):
+        """
+        保存处理结果到文件
+        :param results: dict, 处理结果
+        :param outpath: str, 输出路径
+        """
+        self.logger.info("正在保存结果...")
+        os.makedirs(outpath, exist_ok=True)
+        for file_name, data in [('good.json', results['good']), ('error.json', results['error'])]:
+            file_path = os.path.join(outpath, file_name)
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=4, sort_keys=False)
+        self.logger.info(f"结果已保存到 {outpath}")
+
+    def analyze_results(self, results):
+        """
+        分析处理结果，提供统计信息
+        :param results: dict, 处理结果
+        :return: dict, 包含统计信息的字典
+        """
+        total = len(results['good']) + len(results['error'])
+        success_rate = len(results['good']) / total * 100 if total > 0 else 0
+        self.logger.info(f"总书源数: {total}")
+        self.logger.info(f"有效书源数: {len(results['good'])}")
+        self.logger.info(f"无效书源数: {len(results['error'])}")
+        self.logger.info(f"成功率: {success_rate:.2f}%")
+        return {
+            'total': total,
+            'valid': len(results['good']),
+            'invalid': len(results['error']),
+            'success_rate': success_rate
+        }
