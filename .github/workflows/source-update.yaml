@@ -3,6 +3,7 @@ on:
   schedule:
     - cron: '0 0 * * *'  # 每天午夜运行
   workflow_dispatch:
+
 jobs:
   run-script:
     runs-on: ubuntu-latest
@@ -19,11 +20,18 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run script
+      env:
+        BOOK_SOURCE_PATH: 'http://mirror.ghproxy.com/https://raw.githubusercontent.com/shidahuilang/shuyuan/shuyuan/good.json'
+        OUTPUT_PATH: './output/'
+        WORKERS: '64'
+        DEDUP: 'true'
+        FILTER: 'false'
+        KEYWORDS_TO_FILTER: ''
       run: python app.py
     - name: Commit and push if changed
       run: |
         git config --global user.email "github-actions@example.com"
         git config --global user.name "GitHub Actions"
-        git add results.json
-        git commit -m "Update results" -a || exit 0
+        git add .
+        git commit -m "Update book sources" -a || exit 0
         git push
