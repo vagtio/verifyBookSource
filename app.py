@@ -18,7 +18,12 @@ def resource_path(relative_path):
 def load_or_create_config():
     """ 加载或创建配置文件 """
     config_path = resource_path('book/config.json')
-    if input('是否使用config.json文件？（y/n）').lower() == 'n':
+     # 检查是否在 GitHub Actions 环境中运行
+    if 'GITHUB_ACTIONS' in os.environ:
+        # 在 CI 环境中，默认使用 config.json
+        return load_config()
+    else:
+        if input('是否使用config.json文件？（y/n）').lower() == 'n':
         config = {}
         config['path'] = input('本地文件路径/文件直链URL：')
         config['outpath'] = input('书源输出路径（为空则为当前目录，目录最后带斜杠）：') or './'
