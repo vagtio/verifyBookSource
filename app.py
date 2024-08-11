@@ -44,10 +44,7 @@ def load_or_create_config():
 
 
 def main():
-    print("欢迎使用书源校验工具（VerifyBookSource v2.1）\n"
-          "作者：勿埋我心 - SkyQian\n"
-          "Github：https://github.com/Qiantigers/verifyBookSource\n"
-          "我的博客：https://www.skyqian.com\n"
+    print("欢迎使用书源校验生成工具（VerifyBookSource v2.1）\n"
           f"{'-' * 16}")
 
     config = load_or_create_config()
