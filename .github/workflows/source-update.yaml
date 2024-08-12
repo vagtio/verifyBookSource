@@ -1,7 +1,7 @@
 name: BookSource Update
 on:
   schedule:
-    - cron: '0 0 */4 * *'  # 每天午夜运行
+    - cron: '0 0 */4 * *'  # 每四天午夜运行
   workflow_dispatch:
 
 jobs:
