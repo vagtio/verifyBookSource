@@ -4,7 +4,7 @@
 
 
 
-定时每天零点更新校验、过滤完成的书源：
+定时四天/更新校验、过滤完成的书源：
 
 https://gitdl.cn/https://raw.githubusercontent.com/vagtio/verifyBookSource/main/results/valid_books.json
 
