@@ -8,7 +8,7 @@
 
 https://gitdl.cn/https://raw.githubusercontent.com/vagtio/verifyBookSource/main/results/valid_books.json
 
-声明源书源来自 https://github.com/shidahuilang/shuyuan 
+声明:源书源来自 https://github.com/shidahuilang/shuyuan 
 
 我只是做了整合二次检验、过滤
 
@@ -36,10 +36,7 @@ Python3.10以上
 
 ```sh
 D:\Users\SkyQian\Documents\GitHub\verifyBookSource\dist# app.exe
-欢迎使用书源校验工具（VerifyBookSource v2.1）
-作者：勿埋我心 - SkyQian
-Github：https://github.com/Qiantigers/verifyBookSource
-我的博客：https://www.skyqian.com
+欢迎使用书源生成校验工具（VerifyBookSource v2.1）
 ----------------
 是否使用config.json文件？（不使用则通过命令行输入配置）（y/n）n
 本地文件路径/文件直链URL：https://xiao.ml/shuyuan/7
