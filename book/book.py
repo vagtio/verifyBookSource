@@ -10,13 +10,13 @@ from tqdm import tqdm
 disable_warnings()
 
 class BookSourceManager:
-    def __init__(self, file_path, config):
+    def __init__(self, file_paths, config):
         """
         初始化BookSourceManager类
-        :param file_path: str, 书源文件的路径或URL
+        :param file_paths: str, 书源文件的路径或URL
         :param config: dict, 包含配置参数的字典
         """
-        self.file_path = file_path
+        self.file_paths = file_paths
         self.config = config
         self.logger = self.setup_logger()
         self.session = self.setup_session()
@@ -48,17 +48,19 @@ class BookSourceManager:
         :return: list, 包含书源数据的列表
         """
         self.logger.info("正在加载书源...")
-        try:
-            if self.file_path.startswith('http'):
-                response = self.session.get(self.file_path, timeout=self.config.get('timeout', 5))
-                response.raise_for_status()
-                return response.json()
-            else:
-                with open(self.file_path, 'r', encoding='utf-8') as f:
-                    return json.load(f)
-        except (RequestException, json.JSONDecodeError, FileNotFoundError) as e:
-            self.logger.error(f"加载书源时出错: {str(e)}")
-            return []
+        books = []
+        for file_path in self.file_paths:
+            try:
+                if file_path.startswith('http'):
+                    response = self.session.get(file_path, timeout=self.config.get('timeout', 5))
+                    response.raise_for_status()
+                    books.extend(response.json())
+                else:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        books.extend(json.load(f))
+            except (RequestException, json.JSONDecodeError, FileNotFoundError) as e:
+                self.logger.error(f"加载书源时出错: {file_path} - {str(e)}")
+        return books
 
     def check_book_source(self, book):
         """
