@@ -27,10 +27,12 @@ Python3.10以上
 ## 功能
 
 1. 自定义运行线程：线程越多就越快，但也不介意太多，容易将有效书源判断为无效书源。
-2. 文件支持本地文件和文件直链 默认书源url源自 https://github.com/shidahuilang/shuyuan
-3. 支持重复书源去重、过滤
-4. 自定义输出文件路径
-5. 可一键运行 使用默认配置book/config.json
+2. 文件支持本地文件和文件直链 默认书源url源自
+   https://github.com/shidahuilang/shuyuan
+   https://github.moeyy.xyz
+4. 支持重复书源去重、过滤
+5. 自定义输出文件路径
+6. 可一键运行 使用默认配置book/config.json
 
 运行效果：
 
