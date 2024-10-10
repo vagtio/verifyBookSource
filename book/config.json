@@ -1,6 +1,8 @@
 {
     "paths": ["https://raw.githubusercontent.com/shidahuilang/shuyuan/shuyuan/good.json",
-    "https://github.com/XIU2/Yuedu/blob/master/shuyuan"],
+    "https://github.com/XIU2/Yuedu/blob/master/shuyuan",
+    "https://github.com/ZGQ-inc/source/releases/download/23041/bookSource_23041.json",
+    "https://cdn05042023.gitlink.org.cn/api/v1/repos/yi-c/yd/raw/sy.json?ref=master&access_token=92edf695d430562349cbfac4009fda6ad36817dd"],
     "outpath": "./results/",
     "workers": 64,
     "dedup": "y",
