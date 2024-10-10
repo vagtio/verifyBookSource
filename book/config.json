@@ -1,5 +1,6 @@
 {
-    "paths": ["https://raw.githubusercontent.com/shidahuilang/shuyuan/shuyuan/good.json"],
+    "paths": ["https://raw.githubusercontent.com/shidahuilang/shuyuan/shuyuan/good.json",
+    "https://github.com/XIU2/Yuedu/blob/master/shuyuan"],
     "outpath": "./results/",
     "workers": 64,
     "dedup": "y",
