@@ -1,7 +1,5 @@
 {
-    "paths": ["http://mirror.ghproxy.com/https://raw.githubusercontent.com/shidahuilang/shuyuan/shuyuan/good.json",
-    "https://list.yiove.com/d/OpenFiles/share/shuyuan/66879114d757309a062548b5ad6d268f6a719e68.json",
-    "https://list.yiove.com/d/OpenFiles/share/shuyuan/20240805231826.json"],
+    "paths": ["http://mirror.ghproxy.com/https://raw.githubusercontent.com/shidahuilang/shuyuan/shuyuan/good.json"],
     "outpath": "./results/",
     "workers": 64,
     "dedup": "y",
