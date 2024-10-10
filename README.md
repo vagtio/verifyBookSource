@@ -6,7 +6,7 @@
 
 定时四天/更新校验、过滤完成的书源：
 
-https://gitdl.cn/https://raw.githubusercontent.com/vagtio/verifyBookSource/main/results/valid_books.json
+https://raw.githubusercontent.com/vagtio/verifyBookSource/main/results/valid_books.json
 
 声明:源书源来自 https://github.com/shidahuilang/shuyuan 
 
