@@ -93,6 +93,54 @@
         "weight": 25
     },
     {
+        "bookSourceComment": "该网站的搜索功能好像出问题了，什么都搜不到，建议从【发现】中找书，或者在阅读里直接添加书籍详情页的地址 URL 也行",
+        "bookSourceGroup": "搜索暂不可用",
+        "bookSourceName": "独步小说网",
+        "bookSourceType": 0,
+        "bookSourceUrl": "https://www.dbxsd.com",
+        "customOrder": 12,
+        "enabled": false,
+        "enabledCookieJar": false,
+        "enabledExplore": true,
+        "exploreUrl": "[{\"title\":\"玄幻奇幻\",\"url\":\"/nav/xh-qh-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"科幻游戏\",\"url\":\"/nav/kh-yx-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"仙侠武侠\",\"url\":\"/nav/xx-wx-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"女生言情\",\"url\":\"/nav/ns-yq-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"都市娱乐\",\"url\":\"/nav/ds-yl-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"历史军事\",\"url\":\"/nav/ls-js-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"悬疑灵异\",\"url\":\"/nav/xy-ly-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"耽美纯爱\",\"url\":\"/nav/dm-ca-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"成长励志\",\"url\":\"/nav/cz-lz-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"散文随笔\",\"url\":\"/nav/sw-sb-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"轻の小说\",\"url\":\"/nav/qxs-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"国外文学\",\"url\":\"/nav/gwwx-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"文学名著\",\"url\":\"/nav/wxmz-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"现代当代\",\"url\":\"/nav/xddwx-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"\",\"url\":\"\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}}]",
+        "lastUpdateTime": 1687361913056,
+        "respondTime": 5768,
+        "ruleBookInfo": {
+            "author": "//meta[@property='og:novel:author']/@content",
+            "coverUrl": "//meta[@property='og:image']/@content",
+            "downloadUrls": "@css:.col-xs-1+a",
+            "intro": "//meta[@property='og:description']/@content",
+            "kind": "//meta[@property='og:novel:category']/@content&&//meta[@property='og:novel:status']/@content",
+            "lastChapter": "//meta[@property='og:novel:latest_chapter_name']/@content",
+            "name": "//meta[@property='og:novel:book_name']/@content"
+        },
+        "ruleContent": {
+            "content": "id.cont-body.0@html",
+            "nextContentUrl": "class.page.0@tag.a@href"
+        },
+        "ruleExplore": {
+            "bookList": "class.media",
+            "bookUrl": "tag.a.1@href",
+            "coverUrl": "tag.img.0@src",
+            "intro": "class.media-info@text",
+            "name": "tag.a.1@text"
+        },
+        "ruleSearch": {
+            "author": "tag.td.1@text",
+            "bookList": "tag.tbody.0@tag.tr",
+            "bookUrl": "tag.a.0@href",
+            "coverUrl": "a.0@href@js:var id=result.match(/(\\d+)\\/?$/)[1];'/uploads/cover/'+id+'s.jpg';",
+            "name": "tag.a.0@text##《|》"
+        },
+        "ruleToc": {
+            "chapterList": "id.all-chapter.0@tag.a",
+            "chapterName": "text",
+            "chapterUrl": "href"
+        },
+        "searchUrl": "/plus/search.php?q={{key}}",
+        "weight": 25
+    },
+    {
         "bookSourceComment": "",
         "bookSourceGroup": "",
         "bookSourceName": "📖阅读",
@@ -151,54 +199,6 @@
         },
         "searchUrl": "api/search?keywords={{key}}&pageIndex={{page}}&pageSize=20",
         "weight": 0
-    },
-    {
-        "bookSourceComment": "该网站的搜索功能好像出问题了，什么都搜不到，建议从【发现】中找书，或者在阅读里直接添加书籍详情页的地址 URL 也行",
-        "bookSourceGroup": "搜索暂不可用",
-        "bookSourceName": "独步小说网",
-        "bookSourceType": 0,
-        "bookSourceUrl": "https://www.dbxsd.com",
-        "customOrder": 12,
-        "enabled": false,
-        "enabledCookieJar": false,
-        "enabledExplore": true,
-        "exploreUrl": "[{\"title\":\"玄幻奇幻\",\"url\":\"/nav/xh-qh-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"科幻游戏\",\"url\":\"/nav/kh-yx-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"仙侠武侠\",\"url\":\"/nav/xx-wx-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"女生言情\",\"url\":\"/nav/ns-yq-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"都市娱乐\",\"url\":\"/nav/ds-yl-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"历史军事\",\"url\":\"/nav/ls-js-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"悬疑灵异\",\"url\":\"/nav/xy-ly-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"耽美纯爱\",\"url\":\"/nav/dm-ca-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"成长励志\",\"url\":\"/nav/cz-lz-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"散文随笔\",\"url\":\"/nav/sw-sb-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"轻の小说\",\"url\":\"/nav/qxs-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"国外文学\",\"url\":\"/nav/gwwx-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"文学名著\",\"url\":\"/nav/wxmz-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"现代当代\",\"url\":\"/nav/xddwx-{{page}}.html\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}},{\"title\":\"\",\"url\":\"\",\"style\":{\"layout_flexBasisPercent\":0.25,\"layout_flexGrow\":1}}]",
-        "lastUpdateTime": 1687361913056,
-        "respondTime": 5768,
-        "ruleBookInfo": {
-            "author": "//meta[@property='og:novel:author']/@content",
-            "coverUrl": "//meta[@property='og:image']/@content",
-            "downloadUrls": "@css:.col-xs-1+a",
-            "intro": "//meta[@property='og:description']/@content",
-            "kind": "//meta[@property='og:novel:category']/@content&&//meta[@property='og:novel:status']/@content",
-            "lastChapter": "//meta[@property='og:novel:latest_chapter_name']/@content",
-            "name": "//meta[@property='og:novel:book_name']/@content"
-        },
-        "ruleContent": {
-            "content": "id.cont-body.0@html",
-            "nextContentUrl": "class.page.0@tag.a@href"
-        },
-        "ruleExplore": {
-            "bookList": "class.media",
-            "bookUrl": "tag.a.1@href",
-            "coverUrl": "tag.img.0@src",
-            "intro": "class.media-info@text",
-            "name": "tag.a.1@text"
-        },
-        "ruleSearch": {
-            "author": "tag.td.1@text",
-            "bookList": "tag.tbody.0@tag.tr",
-            "bookUrl": "tag.a.0@href",
-            "coverUrl": "a.0@href@js:var id=result.match(/(\\d+)\\/?$/)[1];'/uploads/cover/'+id+'s.jpg';",
-            "name": "tag.a.0@text##《|》"
-        },
-        "ruleToc": {
-            "chapterList": "id.all-chapter.0@tag.a",
-            "chapterName": "text",
-            "chapterUrl": "href"
-        },
-        "searchUrl": "/plus/search.php?q={{key}}",
-        "weight": 25
     },
     {
         "bookSourceComment": "由 @NPCDW 分享（#85\n\n该网站的搜索功能似乎挂了。。。可先通过【发现】或【浏览器中手动搜索后复制书籍详情页地址在 阅读 书架中 添加网址】。",
