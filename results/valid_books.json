@@ -1,47 +1,5 @@
 [
     {
-        "bookSourceName": "大熊猫文学网",
-        "bookSourceType": 0,
-        "bookSourceUrl": "https://www.dxmwx.org",
-        "customOrder": 13,
-        "enabled": true,
-        "enabledCookieJar": false,
-        "enabledExplore": true,
-        "exploreUrl": "玄幻::/list/topall_玄幻_{{page}}.html\n奇幻::/list/topall_奇幻_{{page}}.html\n武侠::/list/topall_武侠_{{page}}.html\n仙侠::/list/topall_仙侠_{{page}}.html\n都市::/list/topall_都市_{{page}}.html\n言情::/list/topall_言情_{{page}}.html\n军事::/list/topall_军事_{{page}}.html\n历史::/list/topall_历史_{{page}}.html\n科幻::/list/topall_科幻_{{page}}.html\n悬疑::/list/topall_悬疑_{{page}}.html\n女生::/list/topmm__{{page}}.html\n完本::/list/topend__{{page}}.html\n新书榜::/list/topnew__{{page}}.html\n更新榜::/list/topupdate__{{page}}.html\n月点击::/list/topmonth__{{page}}.html\n周点击::/list/topweek__{{page}}.html\n日点击::/list/topday__{{page}}.html",
-        "lastUpdateTime": 1685766742191,
-        "respondTime": 12507,
-        "ruleBookInfo": {
-            "author": "//meta[@property='og:novel:author']/@content",
-            "coverUrl": "//meta[@property='og:image']/@content",
-            "intro": "//meta[@property='og:description']/@content",
-            "kind": "//meta[@property='og:novel:category' or @property='og:novel:status' or @property='og:novel:update_time']/@content",
-            "lastChapter": "//meta[@property='og:novel:latest_chapter_name']/@content",
-            "name": "//meta[@property='og:novel:book_name']/@content",
-            "tocUrl": "@css:a[href^='/chapter/']@href"
-        },
-        "ruleContent": {
-            "content": "id.Lab_Contents.0@html"
-        },
-        "ruleExplore": {},
-        "ruleSearch": {
-            "author": "class.margin0h5.0@tag.a.1@text",
-            "bookList": "@css:#ListContents>div[style*='margin']",
-            "bookUrl": "class.margin0h5.0@tag.a.0@href",
-            "coverUrl": "tag.img.0@src",
-            "intro": "class.neirongh5.0@tag.a.0@text",
-            "kind": "class.biaoqian.0@tag.a.0@text",
-            "lastChapter": "@css:a[href='javascript:void(0)']@textNodes",
-            "name": "class.margin0h5.0@tag.a.0@text"
-        },
-        "ruleToc": {
-            "chapterList": "@css:a[href^='/read/']:not([title])",
-            "chapterName": "text",
-            "chapterUrl": "href"
-        },
-        "searchUrl": "/list/{{key}}.html",
-        "weight": 25
-    },
-    {
         "bookSourceComment": "",
         "bookSourceName": "得奇小说网",
         "bookSourceType": 0,
@@ -139,45 +97,45 @@
         "weight": 25
     },
     {
-        "bookSourceComment": "由 @NPCDW 分享（#85\n\n该网站的搜索功能似乎挂了。。。可先通过【发现】或【浏览器中手动搜索后复制书籍详情页地址在 阅读 书架中 添加网址】。",
-        "bookSourceGroup": "搜索暂不可用",
-        "bookSourceName": "天天看小说",
+        "bookSourceName": "大熊猫文学网",
         "bookSourceType": 0,
-        "bookSourceUrl": "https://cn.ttkan.co",
-        "customOrder": 11,
+        "bookSourceUrl": "https://www.dxmwx.org",
+        "customOrder": 13,
         "enabled": true,
         "enabledCookieJar": false,
-        "enabledExplore": false,
-        "lastUpdateTime": 1687361913056,
-        "respondTime": 5768,
+        "enabledExplore": true,
+        "exploreUrl": "玄幻::/list/topall_玄幻_{{page}}.html\n奇幻::/list/topall_奇幻_{{page}}.html\n武侠::/list/topall_武侠_{{page}}.html\n仙侠::/list/topall_仙侠_{{page}}.html\n都市::/list/topall_都市_{{page}}.html\n言情::/list/topall_言情_{{page}}.html\n军事::/list/topall_军事_{{page}}.html\n历史::/list/topall_历史_{{page}}.html\n科幻::/list/topall_科幻_{{page}}.html\n悬疑::/list/topall_悬疑_{{page}}.html\n女生::/list/topmm__{{page}}.html\n完本::/list/topend__{{page}}.html\n新书榜::/list/topnew__{{page}}.html\n更新榜::/list/topupdate__{{page}}.html\n月点击::/list/topmonth__{{page}}.html\n周点击::/list/topweek__{{page}}.html\n日点击::/list/topday__{{page}}.html",
+        "lastUpdateTime": 1685766742191,
+        "respondTime": 12507,
         "ruleBookInfo": {
-            "author": "//meta[@name='og:novel:author']/@content",
-            "coverUrl": "//meta[@name='og:image']/@content",
-            "intro": "//meta[@name='og:description']/@content",
-            "kind": "//meta[@name='og:novel:category' or @name='og:novel:status' or @name='og:novel:update_time']/@content",
-            "lastChapter": "//meta[@name='og:novel:latest_chapter_name']/@content",
-            "name": "//meta[@name='og:novel:book_name']/@content"
+            "author": "//meta[@property='og:novel:author']/@content",
+            "coverUrl": "//meta[@property='og:image']/@content",
+            "intro": "//meta[@property='og:description']/@content",
+            "kind": "//meta[@property='og:novel:category' or @property='og:novel:status' or @property='og:novel:update_time']/@content",
+            "lastChapter": "//meta[@property='og:novel:latest_chapter_name']/@content",
+            "name": "//meta[@property='og:novel:book_name']/@content",
+            "tocUrl": "@css:a[href^='/chapter/']@href"
         },
         "ruleContent": {
-            "content": "class.content@tag.p@text",
-            "replaceRegex": "##\\n.*\\(本章完\\)$"
+            "content": "id.Lab_Contents.0@html"
         },
         "ruleExplore": {},
         "ruleSearch": {
-            "author": "tag.li.1@text",
-            "bookList": "class.novel_cell",
-            "bookUrl": "tag.a.0@href",
-            "checkKeyWord": "我的师兄",
-            "coverUrl": "tag.amp-img.0@src",
-            "intro": "tag.li.2@text",
-            "name": "tag.h3.0@text"
+            "author": "class.margin0h5.0@tag.a.1@text",
+            "bookList": "@css:#ListContents>div[style*='margin']",
+            "bookUrl": "class.margin0h5.0@tag.a.0@href",
+            "coverUrl": "tag.img.0@src",
+            "intro": "class.neirongh5.0@tag.a.0@text",
+            "kind": "class.biaoqian.0@tag.a.0@text",
+            "lastChapter": "@css:a[href='javascript:void(0)']@textNodes",
+            "name": "class.margin0h5.0@tag.a.0@text"
         },
         "ruleToc": {
-            "chapterList": "class.full_chapters@children[0]@tag.a",
+            "chapterList": "@css:a[href^='/read/']:not([title])",
             "chapterName": "text",
             "chapterUrl": "href"
         },
-        "searchUrl": "/novel/search?q={{key}}",
+        "searchUrl": "/list/{{key}}.html",
         "weight": 25
     },
     {
@@ -232,6 +190,48 @@
         },
         "searchUrl": "/s/1.html?keyword={{key}}&page={{page}}",
         "weight": 0
+    },
+    {
+        "bookSourceComment": "由 @NPCDW 分享（#85\n\n该网站的搜索功能似乎挂了。。。可先通过【发现】或【浏览器中手动搜索后复制书籍详情页地址在 阅读 书架中 添加网址】。",
+        "bookSourceGroup": "搜索暂不可用",
+        "bookSourceName": "天天看小说",
+        "bookSourceType": 0,
+        "bookSourceUrl": "https://cn.ttkan.co",
+        "customOrder": 11,
+        "enabled": true,
+        "enabledCookieJar": false,
+        "enabledExplore": false,
+        "lastUpdateTime": 1687361913056,
+        "respondTime": 5768,
+        "ruleBookInfo": {
+            "author": "//meta[@name='og:novel:author']/@content",
+            "coverUrl": "//meta[@name='og:image']/@content",
+            "intro": "//meta[@name='og:description']/@content",
+            "kind": "//meta[@name='og:novel:category' or @name='og:novel:status' or @name='og:novel:update_time']/@content",
+            "lastChapter": "//meta[@name='og:novel:latest_chapter_name']/@content",
+            "name": "//meta[@name='og:novel:book_name']/@content"
+        },
+        "ruleContent": {
+            "content": "class.content@tag.p@text",
+            "replaceRegex": "##\\n.*\\(本章完\\)$"
+        },
+        "ruleExplore": {},
+        "ruleSearch": {
+            "author": "tag.li.1@text",
+            "bookList": "class.novel_cell",
+            "bookUrl": "tag.a.0@href",
+            "checkKeyWord": "我的师兄",
+            "coverUrl": "tag.amp-img.0@src",
+            "intro": "tag.li.2@text",
+            "name": "tag.h3.0@text"
+        },
+        "ruleToc": {
+            "chapterList": "class.full_chapters@children[0]@tag.a",
+            "chapterName": "text",
+            "chapterUrl": "href"
+        },
+        "searchUrl": "/novel/search?q={{key}}",
+        "weight": 25
     },
     {
         "bookSourceGroup": "API",
